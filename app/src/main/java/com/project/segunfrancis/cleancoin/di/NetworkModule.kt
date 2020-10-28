@@ -3,10 +3,7 @@ package com.project.segunfrancis.cleancoin.di
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.project.segunfrancis.cleancoin.BuildConfig
-import com.project.segunfrancis.data.source.RemoteDataSource
 import com.project.segunfrancis.remote.api.CoinsApi
-import com.project.segunfrancis.remote.source.RemoteDataSourceImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,15 +18,6 @@ import javax.inject.Singleton
 /**
  * Created by SegunFrancis
  */
-
-@Module
-@InstallIn(ApplicationComponent::class)
-abstract class RemoteModule {
-
-    @Binds
-    @Singleton
-    abstract fun remoteDataSource(remoteDataSourceImpl: RemoteDataSourceImpl): RemoteDataSource
-}
 
 @Module
 @InstallIn(ApplicationComponent::class)
