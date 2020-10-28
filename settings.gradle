@@ -1,2 +1,6 @@
+include ':cache'
+include ':domain'
+include ':data'
+include ':remote'
 include ':app'
 rootProject.name = "Clean Coin"
