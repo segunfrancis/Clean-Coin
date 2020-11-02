@@ -1,5 +1,9 @@
 package com.project.segunfrancis.cleancoin.di
 
+import android.content.Context
+import coil.ImageLoader
+import coil.decode.SvgDecoder
+import coil.util.CoilUtils
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.project.segunfrancis.cleancoin.BuildConfig
@@ -8,6 +12,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -50,7 +55,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, @ApplicationContext context: Context): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor { chain ->
@@ -62,6 +67,7 @@ class NetworkModule {
             }
             .callTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+            .cache(CoilUtils.createDefaultCache(context))
             .build()
     }
 
@@ -79,5 +85,14 @@ class NetworkModule {
     @Singleton
     fun provideAPI(retrofit: Retrofit): CoinsApi {
         return retrofit.create(CoinsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideImageLoader(@ApplicationContext context: Context, okHttpClient: OkHttpClient): ImageLoader {
+        return ImageLoader.Builder(context)
+            .okHttpClient(okHttpClient)
+            .componentRegistry { add(SvgDecoder(context)) }
+            .build()
     }
 }

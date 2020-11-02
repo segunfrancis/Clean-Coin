@@ -25,7 +25,9 @@ import kotlinx.coroutines.launch
 class CoinListViewModel @ViewModelInject constructor(
     private val getCoinsCacheUseCase: GetCoinsCacheUseCase,
     private val getCoinsRemoteUseCase: GetCoinsRemoteUseCase,
-    private val addCoinsUseCase: AddCoinsUseCase
+    private val addCoinsUseCase: AddCoinsUseCase,
+    private val baseMapper: BaseMapper,
+    private val coinMapper: CoinMapper
 ) : ViewModel() {
 
     private val _coinResponse = MutableLiveData<Result<Base>>()
@@ -45,7 +47,7 @@ class CoinListViewModel @ViewModelInject constructor(
                     _coinResponse.postValue(Result.Error(it))
                 }
                 .collect {
-                    _coinResponse.postValue(Result.Success(/*baseMapper.mapToAppLayer(it)*/))
+                    _coinResponse.postValue(Result.Success(baseMapper.mapToAppLayer(it)))
                 }
         }
     }

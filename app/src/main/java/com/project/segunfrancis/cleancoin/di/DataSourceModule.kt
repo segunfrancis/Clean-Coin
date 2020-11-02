@@ -20,7 +20,7 @@ abstract class DataSourceModule {
 
     @Binds
     @Singleton
-    abstract fun cacheDataSource(cacheDataSource: CacheDataSourceImpl): CacheDataSource
+    abstract fun cacheDataSource(cacheDataSourceImpl: CacheDataSourceImpl): CacheDataSource
 
     @Binds
     @Singleton

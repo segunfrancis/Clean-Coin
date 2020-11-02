@@ -13,7 +13,7 @@ data class CoinsCache(
     val id: Int,
     val symbol: String,
     val name: String,
-    val description: String,
+    val description: String?,
     val iconUrl: String,
     val price: String
 )
