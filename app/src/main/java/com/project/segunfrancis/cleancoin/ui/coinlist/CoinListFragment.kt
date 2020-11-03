@@ -15,6 +15,8 @@ import com.project.segunfrancis.cleancoin.ui.coinlist.adapter.CoinRecyclerAdapte
 import com.project.segunfrancis.cleancoin.utils.Result.Success
 import com.project.segunfrancis.cleancoin.utils.Result.Error
 import com.project.segunfrancis.cleancoin.utils.Result.Loading
+import com.project.segunfrancis.cleancoin.utils.makeGone
+import com.project.segunfrancis.cleancoin.utils.makeVisible
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -44,28 +46,33 @@ class CoinListFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = coinRecyclerAdapter
         }
+        binding.retryButton.setOnClickListener {
+            viewModel.getCoinsRemote()
+        }
 
         viewModel.coinResponse.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Loading -> {
-                    Snackbar.make(view, "Loading", Snackbar.LENGTH_LONG).show()
+                    binding.loadingIndicator.makeVisible()
+                    binding.errorGroup.makeGone()
                 }
                 is Error -> {
                     Snackbar.make(view, result.error.localizedMessage!!, Snackbar.LENGTH_LONG)
                         .show()
+                    binding.loadingIndicator.makeGone()
+                    binding.errorGroup.makeVisible()
                     Log.e("CoinListFragment", result.error.localizedMessage!!)
                 }
                 is Success -> {
-                    coinRecyclerAdapter.submitList(result.data?.data?.coins)
-                    Snackbar.make(view, result.data!!.status, Snackbar.LENGTH_LONG).show()
+                    val coins = result.data
+                    coinRecyclerAdapter.submitList(coins)
+                    binding.loadingIndicator.makeGone()
+                    if (coins.isNullOrEmpty()) {
+                        viewModel.getCoinsRemote()
+                    }
+                    binding.errorGroup.makeGone()
                 }
             }
         })
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        imageLoader.shutdown()
     }
 }

@@ -1,5 +1,6 @@
 package com.project.segunfrancis.cleancoin.utils
 
+import android.view.View
 import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,4 +22,12 @@ fun ImageView.loadImage(url: String, imageLoader: ImageLoader) {
         .error(R.drawable.ic_baseline_warning)
         .build()
     imageLoader.enqueue(request)
+}
+
+fun View.makeGone() {
+    visibility = View.GONE
+}
+
+fun View.makeVisible() {
+    visibility = View.VISIBLE
 }
