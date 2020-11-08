@@ -34,8 +34,6 @@ class CoinListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCoinListBinding.inflate(layoutInflater)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
         return binding.root
     }
 

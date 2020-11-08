@@ -5,6 +5,10 @@ buildscript {
         nav_version = "2.3.1"
         retrofit2Version = "2.9.0"
         room_version = "2.3.0-alpha03"
+        lifecycle_ext_version = "2.2.0"
+        hilt_version = "2.28-alpha"
+        dagger_version = "1.0.0-alpha02"
+        multidex_version = "2.0.1"
     }
 
     repositories {

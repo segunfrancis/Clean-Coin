@@ -34,12 +34,11 @@ class CoinRecyclerAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Coin) = with(binding) {
-            coinData = item
             coinImageView.loadImage(item.iconUrl, imageLoader)
+            coinName.text = item.name
             root.setOnClickListener {
                 click(item)
             }
-            executePendingBindings()
         }
     }
 }
