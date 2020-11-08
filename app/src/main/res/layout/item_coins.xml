@@ -8,6 +8,7 @@
         <variable
             name="coinData"
             type="com.project.segunfrancis.cleancoin.ui.coinlist.model.Coin" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView

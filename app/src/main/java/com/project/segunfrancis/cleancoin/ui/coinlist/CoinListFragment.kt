@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import coil.ImageLoader
 import com.google.android.material.snackbar.Snackbar
+import com.project.segunfrancis.cleancoin.R
 import com.project.segunfrancis.cleancoin.databinding.FragmentCoinListBinding
 import com.project.segunfrancis.cleancoin.ui.coinlist.adapter.CoinRecyclerAdapter
 import com.project.segunfrancis.cleancoin.utils.Result.Success
@@ -33,6 +34,8 @@ class CoinListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCoinListBinding.inflate(layoutInflater)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -43,7 +46,7 @@ class CoinListFragment : Fragment() {
             Snackbar.make(view, it.symbol, Snackbar.LENGTH_LONG).show()
         }
         binding.coinRecyclerView.apply {
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = GridLayoutManager(requireContext(), resources.getInteger(R.integer.span_count))
             adapter = coinRecyclerAdapter
         }
         binding.retryButton.setOnClickListener {

@@ -29,8 +29,8 @@ import javax.inject.Singleton
 class NetworkModule {
 
     companion object {
-        private const val CONNECT_TIMEOUT: Long = 30L
-        private const val READ_TIMEOUT: Long = 30L
+        private const val CONNECT_TIMEOUT: Long = 20L
+        private const val READ_TIMEOUT: Long = 20L
         private const val BASE_URL: String = "https://rapidapi.p.rapidapi.com/"
     }
 

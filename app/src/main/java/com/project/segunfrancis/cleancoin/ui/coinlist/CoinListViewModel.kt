@@ -11,6 +11,7 @@ import com.project.segunfrancis.cleancoin.utils.asLiveData
 import com.project.segunfrancis.domain.usecase.AddCoinsUseCase
 import com.project.segunfrancis.domain.usecase.GetCoinsCacheUseCase
 import com.project.segunfrancis.domain.usecase.GetCoinsRemoteUseCase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
@@ -24,7 +25,8 @@ class CoinListViewModel @ViewModelInject constructor(
     private val getCoinsCacheUseCase: GetCoinsCacheUseCase,
     private val getCoinsRemoteUseCase: GetCoinsRemoteUseCase,
     private val addCoinsUseCase: AddCoinsUseCase,
-    private val coinMapper: CoinMapper
+    private val coinMapper: CoinMapper,
+    private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     private val _coinResponse = MutableLiveData<Result<List<Coin>>>()
@@ -35,7 +37,7 @@ class CoinListViewModel @ViewModelInject constructor(
     }
 
     fun getCoinsRemote() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             getCoinsRemoteUseCase.execute()
                 .onStart {
                     _coinResponse.postValue(Result.Loading)
@@ -52,7 +54,7 @@ class CoinListViewModel @ViewModelInject constructor(
     }
 
     private fun getCoinsCache() {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             getCoinsCacheUseCase.execute()
                 .collect { coins ->
                     _coinResponse.postValue(Result.Success(coins.map {
@@ -63,7 +65,7 @@ class CoinListViewModel @ViewModelInject constructor(
     }
 
     private fun addCoins(coins: List<Coin>) {
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
             addCoinsUseCase.execute(coins.map {
                 coinMapper.mapToDomainLayer(it)
             })
