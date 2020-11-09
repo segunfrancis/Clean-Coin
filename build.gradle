@@ -9,6 +9,9 @@ buildscript {
         hilt_version = "2.28-alpha"
         dagger_version = "1.0.0-alpha02"
         multidex_version = "2.0.1"
+        timber_version = "4.7.1"
+        firebase_crashlytics_version = "17.2.2"
+        firebase_analytics_version = "18.0.0"
     }
 
     repositories {
@@ -20,6 +23,8 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
+        classpath 'com.google.gms:google-services:4.3.4'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.3.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
