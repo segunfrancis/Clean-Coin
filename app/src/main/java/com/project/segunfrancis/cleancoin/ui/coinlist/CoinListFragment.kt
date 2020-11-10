@@ -58,7 +58,7 @@ class CoinListFragment : Fragment() {
                     binding.errorGroup.makeGone()
                 }
                 is Error -> {
-                    Snackbar.make(view, result.error.localizedMessage!!, Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, result.formattedError, Snackbar.LENGTH_LONG)
                         .show()
                     binding.loadingIndicator.makeGone()
                     binding.errorGroup.makeVisible()
