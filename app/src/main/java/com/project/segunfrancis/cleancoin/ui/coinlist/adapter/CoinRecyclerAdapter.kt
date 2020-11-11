@@ -17,7 +17,7 @@ import com.project.segunfrancis.cleancoin.utils.loadImage
 
 class CoinRecyclerAdapter(
     private val imageLoader: ImageLoader,
-    private val click: (item: Coin) -> Unit
+    private val click: (position: Int) -> Unit
 ) :
     ListAdapter<Coin, CoinRecyclerAdapter.CoinViewHolder>(CoinDiffUtil()) {
 
@@ -37,7 +37,7 @@ class CoinRecyclerAdapter(
             coinImageView.loadImage(item.iconUrl, imageLoader)
             coinName.text = item.name
             root.setOnClickListener {
-                click(item)
+                click(bindingAdapterPosition)
             }
         }
     }
