@@ -8,16 +8,20 @@
     <fragment
         android:id="@+id/coinListFragment"
         android:name="com.project.segunfrancis.cleancoin.ui.coinlist.CoinListFragment"
-        android:label="fragment_coin_list"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_coin_list" >
         <action
             android:id="@+id/action_coinListFragment_to_coinDetailsFragment"
-            app:destination="@id/coinDetailsFragment" />
+            app:destination="@id/coinDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/coinDetailsFragment"
         android:name="com.project.segunfrancis.cleancoin.ui.coindetails.CoinDetailsFragment"
-        android:label="fragment_coin_details"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_coin_details" >
         <argument
             android:name="coin"
