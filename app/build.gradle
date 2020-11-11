@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 static def getApiKey() {
     Properties props = new Properties()
@@ -85,10 +87,18 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$dagger_version"
     kapt "androidx.hilt:hilt-compiler:$dagger_version"
 
+    // Multidex
     implementation "androidx.multidex:multidex:$multidex_version"
 
     // Coil Image Loader - SVG
     implementation("io.coil-kt:coil-svg:1.0.0")
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // Firebase crashlytics
+    implementation "com.google.firebase:firebase-crashlytics:$firebase_crashlytics_version"
+    implementation "com.google.firebase:firebase-analytics:$firebase_analytics_version"
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

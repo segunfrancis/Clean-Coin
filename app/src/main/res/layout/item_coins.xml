@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,9 +29,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@font/arima_madurai_medium"
             android:maxLines="1"
-            android:text="@{coinData.name}"
             android:textColor="@android:color/black"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"

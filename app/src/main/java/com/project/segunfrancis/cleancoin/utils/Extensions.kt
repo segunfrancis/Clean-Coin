@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import coil.ImageLoader
 import coil.request.ImageRequest
+import com.google.android.material.snackbar.Snackbar
 import com.project.segunfrancis.cleancoin.R
 
 /**
@@ -30,4 +31,8 @@ fun View.makeGone() {
 
 fun View.makeVisible() {
     visibility = View.VISIBLE
+}
+
+fun View.showSnack(message: String) {
+    Snackbar.make(this, message, Snackbar.LENGTH_LONG).show()
 }
