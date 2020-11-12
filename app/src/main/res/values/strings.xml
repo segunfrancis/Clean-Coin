@@ -7,4 +7,6 @@
     <string name="text_name">Name</string>
     <string name="text_loading_error">Something went wrong</string>
     <string name="text_try_again">Try Again</string>
+    <string name="desc_previous_coin">Previous coin</string>
+    <string name="desc_next_coin">Next coin</string>
 </resources>

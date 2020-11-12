@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.project.segunfrancis.cleancoin.mapper.CoinMapper
 import com.project.segunfrancis.cleancoin.ui.coinlist.model.Coin
+import com.project.segunfrancis.cleancoin.utils.Event
 import com.project.segunfrancis.cleancoin.utils.Result
 import com.project.segunfrancis.cleancoin.utils.asLiveData
 import com.project.segunfrancis.domain.usecase.AddCoinsUseCase
@@ -31,6 +32,8 @@ class CoinListViewModel @ViewModelInject constructor(
 
     private val _coinResponse = MutableLiveData<Result<List<Coin>>>()
     val coinResponse = _coinResponse.asLiveData()
+
+    val adapterPosition = MutableLiveData<Event<Int>>()
 
     init {
         getCoinsCache()
