@@ -22,6 +22,8 @@ class CoinTimberTree : Timber.Tree() {
         if (priority == ERROR) {
             FirebaseCrashlytics.getInstance()
                 .recordException(t!!)
+        } else {
+            Timber.DebugTree().log(priority, tag, message, t)
         }
     }
 }
