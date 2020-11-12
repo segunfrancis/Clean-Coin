@@ -12,10 +12,7 @@ import coil.ImageLoader
 import com.project.segunfrancis.cleancoin.databinding.FragmentCoinDetailsBinding
 import com.project.segunfrancis.cleancoin.ui.coindetails.adapter.CoinPagerAdapter
 import com.project.segunfrancis.cleancoin.ui.coinlist.CoinListViewModel
-import com.project.segunfrancis.cleancoin.utils.AppConstants.PAGER_SAVED_STATE_KEY
-import com.project.segunfrancis.cleancoin.utils.Result
-import com.project.segunfrancis.cleancoin.utils.makeGone
-import com.project.segunfrancis.cleancoin.utils.makeVisible
+import com.project.segunfrancis.cleancoin.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_coin_details.*
 import javax.inject.Inject
@@ -83,20 +80,15 @@ class CoinDetailsFragment : Fragment() {
                 }
             }
         })
+
+        // Restore state of pager items position
+        viewModel.adapterPosition.observe(viewLifecycleOwner, EventObserver {
+            binding.viewPager.setCurrentItem(it, false)
+        })
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(PAGER_SAVED_STATE_KEY, binding.viewPager.currentItem)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (savedInstanceState != null) {
-            binding.viewPager.setCurrentItem(
-                savedInstanceState.getInt(PAGER_SAVED_STATE_KEY),
-                false
-            )
-        }
+        viewModel.adapterPosition.value = Event(binding.viewPager.currentItem)
     }
 }
