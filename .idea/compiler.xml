@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7">
+      <module name="Clean_Coin.app" target="1.8" />
+      <module name="Clean_Coin.cache" target="1.8" />
       <module name="data" target="1.7" />
       <module name="domain" target="1.7" />
       <module name="remote" target="1.7" />
