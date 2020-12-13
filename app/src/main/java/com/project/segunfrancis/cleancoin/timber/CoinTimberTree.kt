@@ -9,7 +9,7 @@ import timber.log.Timber
  * Created by SegunFrancis
  */
 
-class CoinTimberTree : Timber.Tree() {
+class CoinTimberTree : Timber.DebugTree() {
     /**
      * Write a log message to its destination. Called for all level-specific methods by default.
      *
